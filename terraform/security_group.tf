@@ -14,3 +14,12 @@ resource "aws_security_group" "quicksight_sg_private" {
     security_groups = [ aws_security_group.redshift_sg_private.id ]
   }
 }
+
+resource "aws_security_group_rule" "redshift_to_quicksight" {
+  type = "ingress"
+  from_port = "5439"
+  to_port = "5439"
+  protocol = "tcp"
+  source_security_group_id = aws_security_group.quicksight_sg_private.id
+  security_group_id = aws_security_group.redshift_sg_private.id
+}
