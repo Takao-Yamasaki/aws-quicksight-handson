@@ -36,3 +36,9 @@ data "aws_iam_policy_document" "private_connect" {
     ]
   }
 }
+
+resource "aws_iam_policy_attachment" "private_connect" {
+  name = "private_connect"
+  roles = [ aws_iam_role.private_connect.name ]
+  policy_arn = aws_iam_policy.private_connect.arn
+}
