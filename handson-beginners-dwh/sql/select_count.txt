@@ -1,0 +1,5 @@
+Select count(*) from users;
+
+Select count(*) from date;
+
+Select count(*) from sales;

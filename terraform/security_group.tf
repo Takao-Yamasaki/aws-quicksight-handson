@@ -1,6 +1,13 @@
 resource "aws_security_group" "redshift_sg_private" {
   name = "redshift-sg-private"
   description = "redshift-sg-private"
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
 }
 
 resource "aws_security_group" "quicksight_sg_private" {
@@ -12,6 +19,13 @@ resource "aws_security_group" "quicksight_sg_private" {
     to_port = "65535"
     protocol = "tcp"
     security_groups = [ aws_security_group.redshift_sg_private.id ]
+  }
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [ "0.0.0.0/0" ]
   }
 }
 
